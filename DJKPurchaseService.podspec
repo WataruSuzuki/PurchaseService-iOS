@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJKPurchaseService"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A short description of DJKPurchaseService."
 
   s.description  = <<-DESC
@@ -18,12 +18,13 @@ Pod::Spec.new do |s|
   s.author       = { "WataruSuzuki" => "wataru0406@gmail.com" }
   s.source       = { :git => "https://github.com/WataruSuzuki/PurchaseService-iOS.git", :tag => "#{s.version}" }
 
-  # s.static_framework = true
   s.dependency 'PersonalizedAdConsent'
-  s.dependency 'Google-Mobile-Ads-SDK'
   s.dependency 'SwiftyStoreKit'
-  #s.ios.frameworks = 'GoogleMobileAds'
+
   # s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/Google-Mobile-Ads-SDK/**/' }
+  # s.dependency 'Google-Mobile-Ads-SDK'
+  # s.static_framework = true
+
   s.platform     = :ios, "9.0"
   s.swift_version = '4.2'
   s.source_files = 'PurchaseService/**/*.{swift}'
