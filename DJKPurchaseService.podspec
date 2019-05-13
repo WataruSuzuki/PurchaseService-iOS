@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJKPurchaseService"
-  s.version      = "0.0.3"
+  s.version      = "0.0.4"
   s.summary      = "A short description of DJKPurchaseService."
 
   s.description  = <<-DESC
@@ -20,8 +20,11 @@ Pod::Spec.new do |s|
 
   s.dependency 'PersonalizedAdConsent'
   s.dependency 'SwiftyStoreKit'
+  s.dependency 'PureLayout'
 
-  s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/Google-Mobile-Ads-SDK/**/' }
+  # "${PODS_ROOT}/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current"
+  s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => "$(PODS_ROOT)/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current" }
+
   # s.dependency 'Google-Mobile-Ads-SDK'
   # s.static_framework = true
 
