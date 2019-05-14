@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJKPurchaseService"
-  s.version      = "0.0.4"
+  s.version      = "0.0.5"
   s.summary      = "A short description of DJKPurchaseService."
 
   s.description  = <<-DESC
@@ -30,7 +30,8 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "9.0"
   s.swift_version = '4.2'
-  s.source_files = 'PurchaseService/**/*.{swift}'
+  s.source_files = 'PurchaseService/**/*.{h,swift}'
+  s.xcconfig = { 'SWIFT_OBJC_BRIDGING_HEADER' => 'PurchaseService-Bridging-Header.h' }
   # s.subspec 'ObjC' do |objc|
   #     objc.source_files = 'ObjC/*.{h,m}'
   #     objc.platform     = :ios, "7.0"
