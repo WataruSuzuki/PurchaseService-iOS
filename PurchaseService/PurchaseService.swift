@@ -13,6 +13,8 @@ class PurchaseService: NSObject {
     static let shared: PurchaseService = {
         return PurchaseService()
     }()
+    var privacyPolicyUrl: String!
+    
     var adLoader: GADAdLoader?
     var bannerViews = Set<GADBannerView>()
     var loadedNativeAd = [GADUnifiedNativeAd]()

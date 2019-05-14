@@ -27,7 +27,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
             GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: rootViewController)
         } else {
             let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.confirmPersonalizedConsent(publisherIds: ["your_pub_id"], completion: { (confirmed) in
+                self.confirmPersonalizedConsent(publisherIds: ["your_pub_id"], privacyPolicyUrl: PurchaseService.shared.privacyPolicyUrl, completion: { (confirmed) in
                     if confirmed {
                         self.loadReward(unitId: "your_reward_unit_id")
                     }
