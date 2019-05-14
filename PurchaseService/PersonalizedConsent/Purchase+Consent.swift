@@ -13,7 +13,7 @@ import PersonalizedAdConsent
 
 extension PurchaseService {
 
-    func confirmPersonalizedConsent(publisherIds: [String], productId: String = "", completion: @escaping (Bool) -> Void) {
+    func confirmPersonalizedConsent(publisherIds: [String], productId: String = "", privacyPolicyUrl: String, completion: @escaping (Bool) -> Void) {
         let info = PACConsentInformation.sharedInstance
         
         #if DEBUG
@@ -41,7 +41,7 @@ extension PurchaseService {
                     completion(true)
                     return
                 }
-                self.collectPersonalizedAdsConsent(shouldPersonalize: true, shouldAdFree: !productId.isEmpty, productId: productId, completion: completion)
+                self.collectPersonalizedAdsConsent(shouldPersonalize: true, shouldAdFree: !productId.isEmpty, productId: productId, privacyPolicyUrl: privacyPolicyUrl, completion: completion)
             }
         }
     }
@@ -58,8 +58,8 @@ extension PurchaseService {
         }
     }
     
-    private func collectPersonalizedAdsConsent(shouldPersonalize: Bool, shouldAdFree: Bool, productId: String = "", completion: @escaping (Bool) -> Void) {
-        guard let form = PACConsentForm(applicationPrivacyPolicyURL: URL(string: AppDelegate.privacyPolicyUrl)!) else {
+    private func collectPersonalizedAdsConsent(shouldPersonalize: Bool, shouldAdFree: Bool, productId: String = "", privacyPolicyUrl: String, completion: @escaping (Bool) -> Void) {
+        guard let form = PACConsentForm(applicationPrivacyPolicyURL: URL(string: privacyPolicyUrl)!) else {
             completion(false)
             return
         }
