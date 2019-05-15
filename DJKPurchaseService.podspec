@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJKPurchaseService"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "A short description of DJKPurchaseService."
 
   s.description  = <<-DESC
@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
   s.dependency 'PersonalizedAdConsent'
   s.dependency 'SwiftyStoreKit'
   s.dependency 'PureLayout'
+  # s.dependency 'CryptoSwift'
 
   # "${PODS_ROOT}/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current"
   s.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => "$(PODS_ROOT)/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current" }
@@ -30,8 +31,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "9.0"
   s.swift_version = '4.2'
-  s.source_files = 'PurchaseService/**/*.{h,swift}'
-  s.xcconfig = { 'SWIFT_OBJC_BRIDGING_HEADER' => 'PurchaseService-Bridging-Header.h' }
+  s.source_files = 'PurchaseService/**/*.{swift}'
   # s.subspec 'ObjC' do |objc|
   #     objc.source_files = 'ObjC/*.{h,m}'
   #     objc.platform     = :ios, "7.0"
