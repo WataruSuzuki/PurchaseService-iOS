@@ -28,7 +28,7 @@ extension UIViewController {
             background.isOpaque = true
             background.alpha = 0.5
             let indicator = UIActivityIndicatorView(frame: .zero)
-            indicator.activityIndicatorViewStyle = .whiteLarge
+            indicator.style = .whiteLarge
             top.view.addSubview(background)
             background.autoPinEdgesToSuperviewEdges()
             background.addSubview(indicator)
