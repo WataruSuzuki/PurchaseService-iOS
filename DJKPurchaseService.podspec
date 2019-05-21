@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJKPurchaseService"
-  s.version      = "0.0.20"
+  s.version      = "0.0.21"
   s.summary      = "A short description of DJKPurchaseService."
 
   s.description  = <<-DESC
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   s.ios.vendored_frameworks = 'Pods/Google-Mobile-Ads-SDK/Frameworks/GoogleMobileAdsFramework-Current/GoogleMobileAds.framework'
 
   s.platform     = :ios, "9.0"
-  s.swift_version = '4.2'
+  s.swift_version = '4.0'
   s.source_files = 'PurchaseService/**/*.{swift}'
   # s.subspec 'ObjC' do |objc|
   #     objc.source_files = 'ObjC/*.{h,m}'

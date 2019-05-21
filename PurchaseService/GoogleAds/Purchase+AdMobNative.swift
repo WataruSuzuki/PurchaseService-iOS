@@ -1,9 +1,9 @@
 //
 //  Purchase+AdMob.swift
-//  MealDock
+//  PurchaseService
 //
 //  Created by Wataru Suzuki on 2018/10/20.
-//  Copyright © 2018 WataruSuzuki. All rights reserved.
+//  Copyright © 2018 Wataru Suzuki. All rights reserved.
 //
 
 import Foundation

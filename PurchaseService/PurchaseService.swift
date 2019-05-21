@@ -1,9 +1,9 @@
 //
 //  PurchaseService.swift
-//  MealDock
+//  PurchaseService
 //
 //  Created by Wataru Suzuki 2018/10/19.
-//  Copyright © 2018年 WataruSuzuki. All rights reserved.
+//  Copyright © 2018年 Wataru Suzuki. All rights reserved.
 //
 
 import UIKit
@@ -19,6 +19,7 @@ class PurchaseService: NSObject {
     var bannerViews = Set<GADBannerView>()
     var loadedNativeAd = [GADUnifiedNativeAd]()
     var nativeViews = Set<GADUnifiedNativeAdView>()
+    var interstitialAd: GADInterstitial?
 
     var additionalParameters = [String : String]()
 }

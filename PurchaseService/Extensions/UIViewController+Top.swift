@@ -1,9 +1,9 @@
 //
 //  UIViewController+Top.swift
-//  MealDock
+//  PurchaseService
 //
 //  Created by Wataru Suzuki 2018/10/17.
-//  Copyright © 2018年 WataruSuzuki. All rights reserved.
+//  Copyright © 2018年 Wataru Suzuki. All rights reserved.
 //
 
 import UIKit
@@ -28,7 +28,7 @@ extension UIViewController {
             background.isOpaque = true
             background.alpha = 0.5
             let indicator = UIActivityIndicatorView(frame: .zero)
-            indicator.style = .whiteLarge
+            indicator.activityIndicatorViewStyle = .whiteLarge
             top.view.addSubview(background)
             background.autoPinEdgesToSuperviewEdges()
             background.addSubview(indicator)
