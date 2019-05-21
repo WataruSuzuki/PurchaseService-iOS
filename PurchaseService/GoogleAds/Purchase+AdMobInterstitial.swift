@@ -1,5 +1,5 @@
 //
-//  Purchase+Interstitial.swift
+//  Purchase+AdMobInterstitial.swift
 //  PurchaseService
 //
 //  Created by Wataru Suzuki on 2019/08/28.
@@ -11,16 +11,17 @@ import GoogleMobileAds
 
 extension PurchaseService: GADInterstitialDelegate {
     
-    func loadInterstitial(unitId: String) {
+    public func loadInterstitial(unitId: String) {
         #if DEBUG
         interstitialAd = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
         #else
         interstitialAd = GADInterstitial(adUnitID: unitId)
         #endif
         interstitialAd?.delegate = self
+        interstitialAd?.load(adRequest())
     }
     
-    func showInterstitial(rootViewController: UIViewController) {
+    public func showInterstitial(rootViewController: UIViewController) {
         if let ad = interstitialAd, ad.isReady {
             ad.present(fromRootViewController: rootViewController)
         }

@@ -11,7 +11,7 @@ import PureLayout
 
 extension UIViewController {
     
-    static func currentTop() -> UIViewController? {
+    static public func currentTop() -> UIViewController? {
         if var topController = UIApplication.shared.keyWindow?.rootViewController {
             while let presentedViewController = topController.presentedViewController {
                 topController = presentedViewController
@@ -21,7 +21,7 @@ extension UIViewController {
         return nil
     }
     
-    static func topIndicatorStart() -> UIView? {
+    static public func topIndicatorStart() -> UIView? {
         if let top = currentTop() {
             let background = UIView(frame: top.view.bounds)
             background.backgroundColor = .gray

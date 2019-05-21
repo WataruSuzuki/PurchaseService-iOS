@@ -13,7 +13,7 @@ import PersonalizedAdConsent
 
 extension PurchaseService {
 
-    func confirmPersonalizedConsent(publisherIds: [String], productId: String = "", privacyPolicyUrl: String, completion: @escaping (Bool) -> Void) {
+    public func confirmPersonalizedConsent(publisherIds: [String], productId: String = "", privacyPolicyUrl: String, completion: @escaping (Bool) -> Void) {
         let info = PACConsentInformation.sharedInstance
         PurchaseService.shared.privacyPolicyUrl = privacyPolicyUrl
         

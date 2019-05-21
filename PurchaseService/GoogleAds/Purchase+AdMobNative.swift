@@ -14,7 +14,7 @@ extension PurchaseService: GADUnifiedNativeAdDelegate,
     GADUnifiedNativeAdLoaderDelegate
 {
     // MARK: - GADUnifiedNativeAdLoaderDelegate
-    func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
+    public func adLoader(_ adLoader: GADAdLoader, didReceive nativeAd: GADUnifiedNativeAd) {
         loadedNativeAd.append(nativeAd)
         if let adView = nativeViews.first {
             if applyNativeAd(view: adView) {
@@ -23,32 +23,32 @@ extension PurchaseService: GADUnifiedNativeAdDelegate,
         }
     }
     
-    func nativeAdDidRecordImpression(_ nativeAd: GADUnifiedNativeAd) {
+    public func nativeAdDidRecordImpression(_ nativeAd: GADUnifiedNativeAd) {
         // The native ad was shown.
     }
     
-    func nativeAdDidRecordClick(_ nativeAd: GADUnifiedNativeAd) {
+    public func nativeAdDidRecordClick(_ nativeAd: GADUnifiedNativeAd) {
         // The native ad was clicked on.
     }
     
-    func nativeAdWillPresentScreen(_ nativeAd: GADUnifiedNativeAd) {
+    public func nativeAdWillPresentScreen(_ nativeAd: GADUnifiedNativeAd) {
         // The native ad will present a full screen view.
     }
     
-    func nativeAdWillDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
+    public func nativeAdWillDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
         // The native ad will dismiss a full screen view.
     }
     
-    func nativeAdDidDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
+    public func nativeAdDidDismissScreen(_ nativeAd: GADUnifiedNativeAd) {
         // The native ad did dismiss a full screen view.
     }
     
-    func nativeAdWillLeaveApplication(_ nativeAd: GADUnifiedNativeAd) {
+    public func nativeAdWillLeaveApplication(_ nativeAd: GADUnifiedNativeAd) {
         // The native ad will cause the application to become inactive and
         // open a new application.
     }
     
-    func load(unitId: String, controller: UIViewController) {
+    public func load(unitId: String, controller: UIViewController) {
         let multipleAdsOptions = GADMultipleAdsAdLoaderOptions()
         multipleAdsOptions.numberOfAds = 5
         
@@ -65,7 +65,7 @@ extension PurchaseService: GADUnifiedNativeAdDelegate,
         adLoader?.load(adRequest())
     }
     
-    func nativeView() -> UIView? {
+    public func nativeView() -> UIView? {
         if let nibObjects = Bundle.main.loadNibNamed("UnifiedNativeAdView", owner: nil, options: nil),
             let adView = nibObjects.first as? GADUnifiedNativeAdView {
             return adView
@@ -73,7 +73,7 @@ extension PurchaseService: GADUnifiedNativeAdDelegate,
         return nil
     }
     
-    func applyNativeAd(view: UIView) -> Bool {
+    public func applyNativeAd(view: UIView) -> Bool {
         guard let adView = view as? GADUnifiedNativeAdView else {
             return false
         }

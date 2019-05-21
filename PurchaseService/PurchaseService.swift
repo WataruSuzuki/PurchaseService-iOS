@@ -9,8 +9,8 @@
 import UIKit
 import GoogleMobileAds
 
-class PurchaseService: NSObject {
-    static let shared: PurchaseService = {
+public class PurchaseService: NSObject {
+    public static let shared: PurchaseService = {
         return PurchaseService()
     }()
     var privacyPolicyUrl: String!

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJKPurchaseService"
-  s.version      = "0.0.21"
+  s.version      = "0.0.22"
   s.summary      = "A short description of DJKPurchaseService."
 
   s.description  = <<-DESC

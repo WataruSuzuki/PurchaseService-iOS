@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 extension PurchaseService: GADAdLoaderDelegate {
     
-    func adRequest() -> GADRequest {
+    public func adRequest() -> GADRequest {
         let request = GADRequest()
         let extras = GADExtras()
         extras.additionalParameters = additionalParameters
@@ -21,7 +21,7 @@ extension PurchaseService: GADAdLoaderDelegate {
     }
     
     // MARK: - GADAdLoaderDelegate
-    func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
+    public func adLoader(_ adLoader: GADAdLoader, didFailToReceiveAdWithError error: GADRequestError) {
         
     }
 }

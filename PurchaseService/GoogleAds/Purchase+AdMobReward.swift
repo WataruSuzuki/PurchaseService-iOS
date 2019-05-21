@@ -12,7 +12,7 @@ import GoogleMobileAds
 extension PurchaseService: GADRewardBasedVideoAdDelegate {
     static let keyTicket = "RewardedTicket"
     
-    func loadReward(unitId: String) {
+    public func loadReward(unitId: String) {
         UserDefaults.standard.register(defaults: [PurchaseService.keyTicket : 1])
         GADRewardBasedVideoAd.sharedInstance().delegate = self
         #if DEBUG
@@ -22,7 +22,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
         #endif
     }
     
-    func showReward(rootViewController: UIViewController) {
+    public func showReward(rootViewController: UIViewController) {
         if GADRewardBasedVideoAd.sharedInstance().isReady {
             GADRewardBasedVideoAd.sharedInstance().present(fromRootViewController: rootViewController)
         } else {
@@ -37,7 +37,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
         }
     }
     
-    func hasTicket() -> Bool {
+    public func hasTicket() -> Bool {
         let userDefault = UserDefaults.standard
         guard let current =
             userDefault.object(forKey: PurchaseService.keyTicket) as? Int, current > 0 else {
@@ -49,7 +49,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
     }
     
     // MARK: - GADRewardBasedVideoAdDelegate
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
+    public func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
                             didRewardUserWith reward: GADAdReward) {
         debugPrint("Reward received with currency: \(reward.type), amount \(reward.amount).")
         let userDefault = UserDefaults.standard
@@ -62,33 +62,33 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
         userDefault.synchronize()
     }
     
-    func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd:GADRewardBasedVideoAd) {
+    public func rewardBasedVideoAdDidReceive(_ rewardBasedVideoAd:GADRewardBasedVideoAd) {
         debugPrint("Reward based video ad is received.")
     }
     
-    func rewardBasedVideoAdDidOpen(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+    public func rewardBasedVideoAdDidOpen(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         debugPrint("Opened reward based video ad.")
     }
     
-    func rewardBasedVideoAdDidStartPlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+    public func rewardBasedVideoAdDidStartPlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         debugPrint("Reward based video ad started playing.")
     }
     
-    func rewardBasedVideoAdDidCompletePlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+    public func rewardBasedVideoAdDidCompletePlaying(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         debugPrint("Reward based video ad has completed.")
     }
     
-    func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+    public func rewardBasedVideoAdDidClose(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         debugPrint("Reward based video ad is closed.")
         //TODO -> guard let user = FirebaseService.shared.currentUser, !user.isPurchased else { return }
         loadReward(unitId: "your_reward_unit_id")
     }
     
-    func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
+    public func rewardBasedVideoAdWillLeaveApplication(_ rewardBasedVideoAd: GADRewardBasedVideoAd) {
         debugPrint("Reward based video ad will leave application.")
     }
     
-    func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
+    public func rewardBasedVideoAd(_ rewardBasedVideoAd: GADRewardBasedVideoAd,
                             didFailToLoadWithError error: Error) {
         print("Reward based video ad failed to load.")
     }

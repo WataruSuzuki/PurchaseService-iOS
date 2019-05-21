@@ -10,7 +10,7 @@ import CommonCrypto
 
 extension String {
     
-    func sha1(with param: String) -> String {
+    public func sha1(with param: String) -> String {
         let str = "\(self)_\(param)"
         let data = str.data(using: .utf8)!
         let length = Int(CC_SHA1_DIGEST_LENGTH)
@@ -22,7 +22,7 @@ extension String {
         return crypt
     }
 
-    func md5() -> String {
+    public func md5() -> String {
         let data = self.data(using: .utf8)!
         let length = Int(CC_MD5_DIGEST_LENGTH)
         var digest = [UInt8](repeating: 0, count: length)
