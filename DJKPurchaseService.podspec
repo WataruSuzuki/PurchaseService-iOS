@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DJKPurchaseService"
-  s.version      = "0.0.22"
+  s.version      = "0.0.23"
   s.summary      = "A short description of DJKPurchaseService."
 
   s.description  = <<-DESC
@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
   s.dependency 'PersonalizedAdConsent'
   s.dependency 'SwiftyStoreKit'
   s.dependency 'PureLayout'
+  s.dependency 'TinyConstraints'
 
   # s.dependency 'Google-Mobile-Ads-SDK'
   s.pod_target_xcconfig = {

@@ -1,6 +1,0 @@
-framework module DJKInAppPurchase {
-  umbrella header "DJKInAppPurchase.h"
-
-  export *
-  module * { export * }
-}
