@@ -10,6 +10,9 @@ import Foundation
 import GoogleMobileAds
 import AdSupport
 import PersonalizedAdConsent
+#if canImport(SwiftExtensionChimera)
+  import SwiftExtensionChimera
+#endif
 
 extension PurchaseService {
 
@@ -18,7 +21,7 @@ extension PurchaseService {
         PurchaseService.shared.privacyPolicyUrl = privacyPolicyUrl
         
         #if DEBUG
-        info.debugIdentifiers = [ASIdentifierManager.shared().advertisingIdentifier.uuidString.md5()]
+        info.debugIdentifiers = [ASIdentifierManager.shared().advertisingIdentifier.uuidString.md5]
         
         // Geography appears as in EEA for debug devices.
         //info.debugGeography = .EEA
