@@ -79,7 +79,7 @@ extension PurchaseService {
             }
             form.present(from: top, dismissCompletion: { (error, userPrefersAdFree) in
                 guard error == nil else {
-                    OptionalError.alertErrorMessage(error: error!)
+                    OptionalError.alertErrorMessage(error: error ?? OptionalError(with: OptionalError.Cause.unknown, userInfo: nil))
                     completion(false)
                     return
                 }
