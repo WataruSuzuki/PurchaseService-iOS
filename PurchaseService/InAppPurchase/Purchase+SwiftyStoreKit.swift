@@ -128,16 +128,26 @@ extension PurchaseService {
             case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
             case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
             case .privacyAcknowledgementRequired:
-                print(error.localizedDescription)
+                fallthrough
             case .unauthorizedRequestData:
-                print(error.localizedDescription)
+                fallthrough
             case .invalidOfferIdentifier:
-                print(error.localizedDescription)
+                fallthrough
             case .invalidSignature:
-                print(error.localizedDescription)
+                fallthrough
             case .missingOfferParams:
-                print(error.localizedDescription)
+                fallthrough
             case .invalidOfferPrice:
+                fallthrough
+            case .overlayCancelled:
+                fallthrough
+            case .overlayInvalidConfiguration:
+                fallthrough
+            case .overlayTimeout:
+                fallthrough
+            case .ineligibleForOffer:
+                fallthrough
+            @unknown default:
                 print(error.localizedDescription)
             }
             OptionalError.alertErrorMessage(error: error)
