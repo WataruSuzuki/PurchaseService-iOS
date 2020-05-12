@@ -54,7 +54,7 @@ extension PurchaseService {
         let info = PACConsentInformation.sharedInstance
         info.requestConsentInfoUpdate(forPublisherIdentifiers: publisherIds) { (error) in
             if let error = error {
-                OptionalError.alertErrorMessage(error: error)
+                ErrorHandler.alert(error: error)
                 completion(false)
             } else {
                 completion(info.isRequestLocationInEEAOrUnknown)
@@ -73,20 +73,19 @@ extension PurchaseService {
 
         form.load { (error) in
             guard let top = UIViewController.currentTop(), error == nil else {
-                OptionalError.alertErrorMessage(error: error ?? OptionalError(with: OptionalError.Cause.unknown, userInfo: nil))
+                ErrorHandler.alert(error: error ?? ErrorHandler(userInfo: nil))
                 completion(false)
                 return
             }
             form.present(from: top, dismissCompletion: { (error, userPrefersAdFree) in
                 guard error == nil else {
-                    OptionalError.alertErrorMessage(error: error ?? OptionalError(with: OptionalError.Cause.unknown, userInfo: nil))
+                    ErrorHandler.alert(error: error ?? ErrorHandler(userInfo: nil))
                     completion(false)
                     return
                 }
                 if userPrefersAdFree {
-                    self.validateProduct(productIDs: [productId], subscriptionIDs: Set<String>(), atomically: false, completion: {
-                        completion(false)
-                    })
+                    self.purchase(productID: productId, completion: nil)
+                    completion(false)
                 } else {
                     let status = PACConsentInformation.sharedInstance.consentStatus
                     if status == .nonPersonalized {

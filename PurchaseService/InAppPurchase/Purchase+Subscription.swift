@@ -13,66 +13,6 @@ import SwiftyStoreKit
 extension PurchaseService {
     static let sharedSecret = "your-shared-secret"
     
-    //Note that completeTransactions() should only be called once in your code
-    func completeTransactions() {
-    //func completeTransactions(completion: @escaping ([Purchase]) -> Void) {
-        // see notes below for the meaning of Atomic / Non-Atomic
-        SwiftyStoreKit.completeTransactions(atomically: true) { purchases in
-            for purchase in purchases {
-                switch purchase.transaction.transactionState {
-                case .purchased, .restored:
-                    if purchase.needsFinishTransaction {
-                        // Deliver content from server, then:
-                        SwiftyStoreKit.finishTransaction(purchase.transaction)
-                    }
-                // Unlock content
-                case .failed, .purchasing, .deferred:
-                    break // do nothing
-                }
-            }
-        }
-    }
-    
-    func validateProduct(productIDs: Set<String>, subscriptionIDs: Set<String>, atomically: Bool, completion: @escaping () -> Void) {
-        let indicator = UIViewController.topIndicatorStart()
-        retrieveProductsInfo(productID: productIDs) { (result) in
-            if let result = result {
-                for product in result.retrievedProducts {
-                    if productIDs.contains(product.productIdentifier) {
-                        self.purchaseProduct(with: product, purchaseIds: productIDs, subscriptionIds: productIDs, atomically: false, completion: completion)
-                    }
-                }
-            }
-            UIViewController.topIndicatorStop(view: indicator)
-        }
-    }
-    
-    private func retrieveProductsInfo(productID: Set<String>, completion: @escaping (RetrieveResults?) -> Void) {
-        SwiftyStoreKit.retrieveProductsInfo(productID) { result in
-            guard result.error == nil else {
-                OptionalError.alertErrorMessage(error: result.error!)
-                completion(nil)
-                return
-            }
-            if result.invalidProductIDs.count > 0 {
-                for invalidProduct in result.invalidProductIDs {
-                    print("Invalid product identifier: \(invalidProduct)")
-                }
-            }
-            for product in result.retrievedProducts {
-                debugPrint("Product: \(product.localizedDescription)")
-                let priceString = product.localizedPrice ?? "(・∀・)??"
-                debugPrint("Price: \(priceString)")
-                if #available(iOS 11.2, *) {
-                    if let period = product.subscriptionPeriod {
-                        debugPrint("period numberOfUnits: \(period.numberOfUnits)")
-                        debugPrint("period unit: \(period.unit)")
-                    }
-                }
-            }
-            completion(result)
-        }
-    }
     
     func retrieveProductInfo(productID: String, completion: @escaping (SKProduct?) -> Void) {
         let indicator = UIViewController.topIndicatorStart()

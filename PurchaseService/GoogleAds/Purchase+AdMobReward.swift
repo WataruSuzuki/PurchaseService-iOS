@@ -33,7 +33,7 @@ extension PurchaseService: GADRewardBasedVideoAdDelegate {
                     }
                 })
             }
-            OptionalError.alertErrorMessage(message: "(・A・)!!", actions: [action])
+            ErrorHandler.alert(message: "(・A・)!!", actions: [action])
         }
     }
     

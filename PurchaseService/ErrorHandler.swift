@@ -8,10 +8,10 @@
 
 import UIKit
 
-class OptionalError: NSError {
+class ErrorHandler: NSError {
 
-    init(with type: Cause, userInfo: [String : Any]?) {
-        super.init(domain: Bundle.main.bundleIdentifier ?? "(・w・)", code: type.rawValue, userInfo: userInfo)
+    init(userInfo: [String : Any]?) {
+        super.init(domain: Bundle.main.bundleIdentifier ?? "(・w・)", code: 500, userInfo: userInfo)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -22,17 +22,15 @@ class OptionalError: NSError {
         return "(・A・)!! " + funcName
     }
     
-    static func alertErrorMessage(error: Error) {
+    static func alert(error: Error) {
         print(error)
-        alertErrorMessage(message: error.localizedDescription, actions: nil)
+        alert(message: error.localizedDescription, actions: nil)
     }
     
-    static func alertErrorMessage(message: String, actions: [UIAlertAction]?) {
+    static func alert(message: String, actions: [UIAlertAction]?) {
         let alert = UIAlertController(title: "(=・A・=)!!", message: message, preferredStyle: .alert)
         if let actions = actions {
-            for action in actions {
-                alert.addAction(action)
-            }
+            actions.forEach({ alert.addAction($0) })
         } else {
             let empty = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(empty)
@@ -41,12 +39,12 @@ class OptionalError: NSError {
             top.present(alert, animated: true, completion: nil)
         }
     }
-    
-    enum Cause: Int {
-        case unknown = 600,
-        failedToGetPhotoData,
-        failedToGetToken,
-        failedToCreatePhotoSaveSpace,
-        max
-    }
+//
+//    enum Cause: Int {
+//        case unknown = 600,
+//        failedToGetPhotoData,
+//        failedToGetToken,
+//        failedToCreatePhotoSaveSpace,
+//        max
+//    }
 }
