@@ -13,10 +13,37 @@ import PersonalizedAdConsent
 #if canImport(SwiftExtensionChimera)
   import SwiftExtensionChimera
 #endif
+import AppTrackingTransparency
 
 extension PurchaseService {
 
-    public func confirmPersonalizedConsent(publisherIds: [String], productId: String = "", privacyPolicyUrl: String, completion: @escaping (Bool) -> Void) {
+    public func confirmConsent(publisherIds: [String], productId: String = "", privacyPolicyUrl: String, completion: @escaping (Bool) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        let dispatchQueue = DispatchQueue(label: "queue_confirm_consent", attributes: .concurrent)
+        
+        dispatchGroup.enter()
+        if #available(iOS 14, *) {
+            DispatchQueue.main.async {
+                guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else {
+                    dispatchGroup.leave()
+                    return
+                }
+                ATTrackingManager.requestTrackingAuthorization { (status) in
+                    dispatchGroup.leave()
+                }
+            }
+        } else {
+            dispatchGroup.leave()
+        }
+        
+        dispatchGroup.notify(queue: dispatchQueue) {
+            DispatchQueue.main.async {
+                self.confirmPersonalizedConsent(publisherIds: publisherIds, productId: productId, privacyPolicyUrl: privacyPolicyUrl, completion: completion)
+            }
+        }
+    }
+    
+    private func confirmPersonalizedConsent(publisherIds: [String], productId: String = "", privacyPolicyUrl: String, completion: @escaping (Bool) -> Void) {
         let info = PACConsentInformation.sharedInstance
         PurchaseService.shared.privacyPolicyUrl = privacyPolicyUrl
         

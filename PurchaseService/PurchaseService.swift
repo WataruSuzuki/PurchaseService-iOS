@@ -10,6 +10,7 @@ import UIKit
 import GoogleMobileAds
 import SwiftyStoreKit
 import KeychainAccess
+import AppTrackingTransparency
 
 public class PurchaseService: NSObject {
     let unknownError = NSError(domain: "PurchaseService", code: 500, userInfo: nil)
