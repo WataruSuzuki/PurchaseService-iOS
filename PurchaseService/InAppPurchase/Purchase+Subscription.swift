@@ -15,18 +15,18 @@ extension PurchaseService {
     
     
     func retrieveProductInfo(productID: String, completion: @escaping (SKProduct?) -> Void) {
-        let indicator = UIViewController.topIndicatorStart()
-        retrieveProductsInfo(productID: [productID]) { (results) in
-            UIViewController.topIndicatorStop(view: indicator)
-            guard let results = results, results.retrievedProducts.count > 0 else {
+//        let indicator = UIViewController.topIndicatorStart()
+//        retrieveProductsInfo(productID: [productID]) { (results) in
+//            UIViewController.topIndicatorStop(view: indicator)
+//            guard let results = results, results.retrievedProducts.count > 0 else {
                 completion(nil)
-                return
-            }
-            for product in results.retrievedProducts {
-                completion(product)
-                break
-            }
-        }
+//                return
+//            }
+//            for product in results.retrievedProducts {
+//                completion(product)
+//                break
+//            }
+//        }
     }
 
     private func purchaseProduct(with product: SKProduct, purchaseIds: Set<String>, subscriptionIds: Set<String>,  atomically: Bool, completion: @escaping () -> Void) {
@@ -90,7 +90,7 @@ extension PurchaseService {
             @unknown default:
                 print(error.localizedDescription)
             }
-            OptionalError.alertErrorMessage(error: error)
+            ErrorHandler.alert(error: error)
         }
     }
     
@@ -104,7 +104,7 @@ extension PurchaseService {
                     message.append("\n - \(restoreFailed)")
                 }
                 UIViewController.topIndicatorStop(view: indicator)
-                OptionalError.alertErrorMessage(message: message, actions: nil)
+                ErrorHandler.alert(message: message, actions: nil)
                 return
             }
             if results.restoredPurchases.count > 0 {
@@ -141,7 +141,7 @@ extension PurchaseService {
                 debugPrint("Restore Success: \(results.restoredPurchases)")
             } else {
                 print("Nothing to Restore")
-                OptionalError.alertErrorMessage(message: "cannot_find_paid_history", actions: nil)
+                ErrorHandler.alert(message: "cannot_find_paid_history", actions: nil)
             }
             UIViewController.topIndicatorStop(view: indicator)
         }
